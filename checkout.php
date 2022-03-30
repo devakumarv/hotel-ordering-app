@@ -43,6 +43,7 @@ else{
     <meta name="author" content="">
     <link rel="icon" href="#">
     <title>Grub</title>
+    <link rel="shortcut icon" href="images/newbglogo.png" type="image/jpg">
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
@@ -73,7 +74,7 @@ else{
 							}
 						else
 							{
-										echo  '<li class="nav-item"><a href="your_orders.php" class="nav-link active">Your orders</a> </li>';
+										echo  '<li class="nav-item"><a href="accountpage.php" class="nav-link active">My account</a> </li>';
 									echo  '<li class="nav-item"><a href="logout.php" class="nav-link active">Logout</a> </li>';
 							}
 
@@ -125,15 +126,15 @@ else{
 											<tbody>
                                                     <tr>
                                                         <td>Cart Subtotal</td>
-                                                        <td> <?php echo "$".$item_total; ?></td>
+                                                        <td> <?php echo "₹".$item_total; ?></td>
                                                     </tr>
                                                     <tr>
                                                         <td>Shipping &amp; Handling</td>
-                                                        <td>free shipping</td>
+                                                        <td>Free shipping</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="text-color"><strong>Total</strong></td>
-                                                        <td class="text-color"><strong> <?php echo "$".$item_total; ?></strong></td>
+                                                        <td class="text-color"><strong> <?php echo "₹".$item_total; ?></strong></td>
                                                     </tr>
                                                 </tbody>
 												
@@ -148,12 +149,12 @@ else{
                                         <ul class=" list-unstyled">
                                             <li>
                                                 <label class="custom-control custom-radio  m-b-20">
-                                                    <input name="mod" id="radioStacked1" checked value="COD" type="radio" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">Payment on delivery</span>
-                                                    <br> <span>Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</span> </label>
+                                                    <input name="mod" id="radioStacked1" checked value="COD" type="radio" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">Pay on delivery</span>
+                                                    </label>
                                             </li>
                                             <li>
                                                 <label class="custom-control custom-radio  m-b-10">
-                                                    <input name="mod"  type="radio" value="paypal"  class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">Paypal <img src="images/paypal.jpg" alt="" width="90"></span> </label>
+                                                    <input name="mod"  type="radio" value="paypal"  class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">Credit/Debit Card <img src="images/paypal.jpg" alt="" width="90"></span> </label>
                                             </li>
                                         </ul>
                                         <p class="text-xs-center"> <input type="submit" onclick="return confirm('Are you sure?');" name="submit"  class="btn btn-outline-success btn-block" value="Order now"> </p>
@@ -206,16 +207,16 @@ else{
                         <div class="col-xs-12 col-sm-3 popular-locations color-gray">
                             <h5>Popular locations</h5>
                             <ul>
-                                <li><a href="#">Sarajevo</a> </li>
-                                <li><a href="#">Split</a> </li>
-                                <li><a href="#">Tuzla</a> </li>
-                                <li><a href="#">Sibenik</a> </li>
-                                <li><a href="#">Zagreb</a> </li>
-                                <li><a href="#">Brcko</a> </li>
-                                <li><a href="#">Beograd</a> </li>
-                                <li><a href="#">New York</a> </li>
-                                <li><a href="#">Gradacac</a> </li>
-                                <li><a href="#">Los Angeles</a> </li>
+                            <li><a href="#">T Nagar</a> </li>
+                            <li><a href="#">Anna Nagar</a> </li>
+                            <li><a href="#">Velachery</a> </li>
+                            <li><a href="#">Chrompet</a> </li>
+                            <li><a href="#">Richie Street</a> </li>
+                            <li><a href="#">Sowkarpet</a> </li>
+                            <li><a href="#">North Chennai</a> </li>
+                            <li><a href="#">South Chennai</a> </li>
+                            <li><a href="#">Guindy</a> </li>
+                            <li><a href="#">Mylapore</a> </li>
                             </ul>
                         </div>
                     </div>
@@ -246,7 +247,7 @@ else{
                                 </div>
                                 <div class="col-xs-12 col-sm-4 address color-gray">
                                     <h5>Address</h5>
-                                    <p>Concept design of oline food order and deliveye,planned as restaurant directory</p>
+                                    <p> D/2, Corinthian, Justice D V Vyas Marg, Opp Fariyas Hotel, Chennai.</p>
                                     <h5>Phone</h5> <a href="tel:+9445686329">9445686329</a> </div>
                                 <div class="col-xs-12 col-sm-5 additional-info color-gray">
                                     <h5>Addition informations</h5>

@@ -1,84 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-
-session_start(); //temp session
-error_reporting(0); // hide undefine index
-include("connection/connect.php"); // connection
-if(isset($_POST['submit'] )) //if submit btn is pressed
-{
-     if(empty($_POST['firstname']) ||  //fetching and find if its empty
-   	    empty($_POST['lastname'])|| 
-		empty($_POST['email']) ||  
-		empty($_POST['phone'])||
-		empty($_POST['password'])||
-		empty($_POST['cpassword']) ||
-		empty($_POST['cpassword']))
-		{
-			$message = "All fields must be Required!";
-		}
-	else
-	{
-		//cheching username & email if already present
-	$check_username= mysqli_query($db, "SELECT username FROM users where username = '".$_POST['username']."' ");
-	$check_email = mysqli_query($db, "SELECT email FROM users where email = '".$_POST['email']."' ");
-		
-
-	
-	if($_POST['password'] != $_POST['cpassword']){  //matching passwords
-       	$message = "Password not match";
-    }
-	elseif(strlen($_POST['password']) < 6)  //cal password length
-	{
-		$message = "Password Must be >=6";
-	}
-	elseif(strlen($_POST['phone']) < 10)  //cal phone length
-	{
-		$message = "invalid phone number!";
-	}
-
-    elseif (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) // Validate email address
-    {
-       	$message = "Invalid email address please type a valid email!";
-    }
-	elseif(mysqli_num_rows($check_username) > 0)  //check username
-     {
-    	$message = 'username Already exists!';
-     }
-	elseif(mysqli_num_rows($check_email) > 0) //check email
-     {
-    	$message = 'Email Already exists!';
-     }
-	else{
-       
-	 //inserting values into db
-	$mql = "INSERT INTO users(username,f_name,l_name,email,phone,password,address) VALUES('".$_POST['username']."','".$_POST['firstname']."','".$_POST['lastname']."','".$_POST['email']."','".$_POST['phone']."','".md5($_POST['password'])."','".$_POST['address']."')";
-	mysqli_query($db, $mql);
-		$success = "Account Created successfully! <p>You will be redirected in <span id='counter'>5</span> second(s).</p>
-														<script type='text/javascript'>
-														function countdown() {
-															var i = document.getElementById('counter');
-															if (parseInt(i.innerHTML)<=0) {
-																location.href = 'login.php';
-															}
-															i.innerHTML = parseInt(i.innerHTML)-1;
-														}
-														setInterval(function(){ countdown(); },1000);
-														</script>'";
-		
-		
-		
-		
-		 header("refresh:5;url=login.php"); // redireted once inserted success
-    }
-	}
-
-}
-
-
+include("connection/connect.php");
+error_reporting(0);
+session_start();
 ?>
-
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -125,19 +51,39 @@ if(isset($_POST['submit'] )) //if submit btn is pressed
 									echo  '<li class="nav-item"><a href="logout.php" class="nav-link active">Logout</a> </li>';
 							}
 
-						?>
-							 
+						?>	 
                         </ul>
                   </div>
                </div>
             </nav>
             <!-- /.navbar -->
          </header>
+       
          <div class="page-wrapper">
             <div class="breadcrumb">
                <div class="container">
                   <ul>
                      <li><a href="#" class="active">
+                         <span>
+                             <?php
+                                    $query_res= mysqli_query($db,"select * from users where u_id='".$_SESSION['user_id']."'");
+                                    if(!mysqli_num_rows($query_res) > 0 )
+                                            {
+                                                echo '<td colspan="6"><center>You have No orders Placed yet. </center></td>';
+                                            }
+                                        else
+                                            {			      
+                              
+                              while($row=mysqli_fetch_array($query_res))
+                              {
+                                    echo '<h2>'.$row['f_name']." ".$row['l_name'].'</h2>'; 
+                                
+                                    echo '<h5>'.$row['phone']." -  ".$row['email'].'</h5>';
+                              }
+                                            }
+                             ?>
+                        
+                        </span>
 					  <span style="color:red;"><?php echo $message; ?></span>
 					   <span style="color:green;">
 								<?php echo $success; ?>
@@ -158,36 +104,24 @@ if(isset($_POST['submit'] )) //if submit btn is pressed
                               
 							  <form action="" method="post">
                                  <div class="row">
-								  <div class="form-group col-sm-12">
-                                       <label for="exampleInputEmail1">User-Name</label>
-                                       <input class="form-control" type="text" name="username" id="example-text-input" placeholder="UserName"> 
-                                    </div>
                                     <div class="form-group col-sm-6">
                                        <label for="exampleInputEmail1">First Name</label>
                                        <input class="form-control" type="text" name="firstname" id="example-text-input" placeholder="First Name"> 
                                     </div>
-                                    <div class="form-group col-sm-6">
+                                   <div class="form-group col-sm-6">
                                        <label for="exampleInputEmail1">Last Name</label>
                                        <input class="form-control" type="text" name="lastname" id="example-text-input-2" placeholder="Last Name"> 
-                                    </div>
+                                    </div> 
                                     <div class="form-group col-sm-6">
                                        <label for="exampleInputEmail1">Email address</label>
                                        <input type="text" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"> <small id="emailHelp" class="form-text text-muted">We"ll never share your email with anyone else.</small> 
                                     </div>
                                     <div class="form-group col-sm-6">
                                        <label for="exampleInputEmail1">Phone number</label>
-                                       <input class="form-control" type="text" name="phone" id="example-tel-input-3" placeholder="Phone"> <small class="form-text text-muted">We"ll never share your email with anyone else.</small> 
-                                    </div>
-                                    <div class="form-group col-sm-6">
-                                       <label for="exampleInputPassword1">Password</label>
-                                       <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password"> 
-                                    </div>
-                                    <div class="form-group col-sm-6">
-                                       <label for="exampleInputPassword1">Repeat password</label>
-                                       <input type="password" class="form-control" name="cpassword" id="exampleInputPassword2" placeholder="Password"> 
+                                       <input class="form-control" type="text" name="phone" id="example-tel-input-3" placeholder="Phone"> 
                                     </div>
 									 <div class="form-group col-sm-12">
-                                       <label for="exampleTextarea">Delivery Address</label>
+                                       <label for="exampleTextarea">Your Message</label>
                                        <textarea class="form-control" id="exampleTextarea"  name="address" rows="3"></textarea>
                                     </div>
                                    
@@ -195,7 +129,7 @@ if(isset($_POST['submit'] )) //if submit btn is pressed
                                 
                                  <div class="row">
                                     <div class="col-sm-4">
-                                       <p> <input type="submit" value="Sign Up" name="submit" class="btn theme-btn"> </p>
+                                       <p> <input type="submit" value="Submit Query" name="submit" class="btn theme-btn"> </p>
                                     </div>
                                  </div>
                               </form>
@@ -207,26 +141,15 @@ if(isset($_POST['submit'] )) //if submit btn is pressed
                      </div>
                      <!-- WHY? -->
                      <div class="col-md-4">
-                        <h4>Registration is fast, easy, and free.</h4>
+                        <h4>Contact Us</h4>
                        
                         <hr>
-                        
-                        
-                        <p><b>Terms of service</b></p>
-
-<p style="font-size:75%;">The Buyer agrees and acknowledges that Grub shall not be responsible for:</p>
-
-<p style="font-size:75%;">The services or goods provided by the Merchants including but not limited to serving of food Orders suiting your requirements and taste;</p>
-
-<p style="font-size:75%;">The Merchant's services or goods, or services provided by PDPs not being up to Buyer expectations or leading to any loss, harm or damage to him/her;</p>
-
-<p style="font-size:75%;">The availability or unavailability of certain items on the menu;</p>
-
-<p style="font-size:75%;">The Merchant serving the incorrect Orders.</p>
-
+                        <p><h5>Address</h5> D/2, Corinthian, Justice D V Vyas Marg, Opp Fariyas Hotel, Chennai. </p>
+                        <p><h5>E-Mail</h5>grub@gmail.com</p>
+                      <p><h5>Phone</h5>9003418326</p>
+                       
                         <!-- end:Panel -->
                      </div>
-                     <!-- /WHY? -->
                   </div>
                </div>
             </section>
@@ -234,7 +157,7 @@ if(isset($_POST['submit'] )) //if submit btn is pressed
             <!-- start: FOOTER -->
             <footer class="footer">
                <div class="container">
-                  <!-- top footer statrs -->
+                  <!-- top footer starts -->
                   <div class="row top-footer">
                      <div class="col-xs-12 col-sm-3 footer-logo-block color-gray">
                      <a href="#"> <img src="images/logo1.jpg" style="height: 10%; width: 15%;" alt="Footer logo"> </a> <span>Order Delivery &amp; Take-Out </span> 

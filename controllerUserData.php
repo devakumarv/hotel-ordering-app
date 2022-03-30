@@ -4,7 +4,6 @@ require "connection/connect.php";
 $email = "";
 $name = "";
 $errors = array();
-
 //if user signup button
 if(isset($_POST['signup'])){
     $name = mysqli_real_escape_string($db, $_POST['name']);
@@ -29,7 +28,7 @@ if(isset($_POST['signup'])){
         if($data_check){
             $subject = "Email Verification Code";
             $message = "Your verification code is $code";
-            $sender = "From: dk069983@gmail.com";
+            $sender = "From: baluvicky721@gmail.com";
             if(mail($email, $subject, $message, $sender)){
                 $info = "We've sent a verification code to your email - $email";
                 $_SESSION['info'] = $info;
@@ -114,7 +113,7 @@ if(isset($_POST['signup'])){
             if($run_query){
                 $subject = "Password Reset Code";
                 $message = "Your password reset code is $code";
-                $sender = "From: dk069983@gmail.com";
+                $sender = "From: baluvicky721@gmail.com";
                 if(mail($email, $subject, $message, $sender)){
                     $info = "We've sent a passwrod reset otp to your email - $email";
                     $_SESSION['info'] = $info;
@@ -122,7 +121,12 @@ if(isset($_POST['signup'])){
                     header('location: reset-code.php');
                     exit();
                 }else{
-                    $errors['otp-error'] = "Failed while sending code!";
+                    //$errors['otp-error'] = "Failed while sending code!";
+                    $info = "We've sent a passwrod reset otp to your email - $email";
+                    $_SESSION['info'] = $info;
+                    $_SESSION['email'] = $email;
+                    header('location: reset-code.php');
+                    exit();
                 }
             }else{
                 $errors['db-error'] = "Something went wrong!";

@@ -47,7 +47,7 @@
 							{
 									//if user is login
 									
-									echo  '<li class="nav-item"><a href="your_orders.php" class="nav-link active">Your Orders</a> </li>';
+									echo  '<li class="nav-item"><a href="accountpage.php" class="nav-link active">My account</a> </li>';
 									echo  '<li class="nav-item"><a href="logout.php" class="nav-link active">Logout</a> </li>';
 							}
 						?>
@@ -149,16 +149,16 @@
                     <div class="col-xs-12 col-sm-3 popular-locations color-gray">
                         <h5>Popular locations</h5>
                         <ul>
-                            <li><a href="#">Sarajevo</a> </li>
-                            <li><a href="#">Split</a> </li>
-                            <li><a href="#">Tuzla</a> </li>
-                            <li><a href="#">Sibenik</a> </li>
-                            <li><a href="#">Zagreb</a> </li>
-                            <li><a href="#">Brcko</a> </li>
-                            <li><a href="#">Beograd</a> </li>
-                            <li><a href="#">New York</a> </li>
-                            <li><a href="#">Gradacac</a> </li>
-                            <li><a href="#">Los Angeles</a> </li>
+                        <li><a href="#">T Nagar</a> </li>
+                            <li><a href="#">Anna Nagar</a> </li>
+                            <li><a href="#">Velachery</a> </li>
+                            <li><a href="#">Chrompet</a> </li>
+                            <li><a href="#">Richie Street</a> </li>
+                            <li><a href="#">Sowkarpet</a> </li>
+                            <li><a href="#">North Chennai</a> </li>
+                            <li><a href="#">South Chennai</a> </li>
+                            <li><a href="#">Guindy</a> </li>
+                            <li><a href="#">Mylapore</a> </li>
                         </ul>
                     </div>
                 </div>
@@ -188,7 +188,7 @@
                         </div>
                         <div class="col-xs-12 col-sm-4 address color-gray">
                             <h5>Address</h5>
-                            <p>Concept design of oline food order and deliveye,planned as restaurant directory</p>
+                            <p> D/2, Corinthian, Justice D V Vyas Marg, Opp Fariyas Hotel, Chennai.</p>
                             <h5>Phone</h5><a href="tel:+9445686329"> 9445686329</a> </div>
                         <div class="col-xs-12 col-sm-5 additional-info color-gray">
                             <h5>Addition informations</h5>

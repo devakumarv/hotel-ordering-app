@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+    
 <?php
 include("connection/connect.php"); // connection to db
 error_reporting(0);
@@ -19,13 +20,35 @@ include_once 'product-action.php'; //including controller
     <meta name="author" content="">
     <link rel="icon" href="#">
     <title>Grub</title>
+    <link rel="shortcut icon" href="images/newbglogo.png" type="image/jpg">
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/animsition.min.css" rel="stylesheet">
     <link href="css/animate.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="css/style.css" rel="stylesheet"> </head>
+    <link href="css/style.css" rel="stylesheet">
+<style>
+    .fa-whatsapp  {
+  color:#fff;
+  background:
+   linear-gradient(#25d366,#25d366) 14% 84%/16% 16% no-repeat,
+   radial-gradient(#25d366 58%,transparent 0);
+}
+
+.fa {
+  font-size: 25px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.fa:hover {
+  color: orange;
+}
+
+
+
+</style> </head>
 
 <body>
     
@@ -51,7 +74,7 @@ include_once 'product-action.php'; //including controller
 							{
 									
 									
-									echo  '<li class="nav-item"><a href="your_orders.php" class="nav-link active">Your Orders</a> </li>';
+									echo  '<li class="nav-item"><a href="accountpage.php" class="nav-link active">My account</a> </li>';
 									echo  '<li class="nav-item"><a href="logout.php" class="nav-link active">Logout</a> </li>';
 							}
 
@@ -98,6 +121,7 @@ include_once 'product-action.php'; //including controller
                                     <ul class="nav nav-inline">
                                         <li class="nav-item"> <a class="nav-link active" href="#" ><i class="fa fa-check"></i> Min ₹ 10.00</a> </li>
                                         <li class="nav-item"> <a class="nav-link" href="#"  ><i class="fa fa-clock-o"></i> 30 mins</a> </li>
+                                        <li class="nav-item"> <a class="nav-link" href="https://api.whatsapp.com/send?phone=<?=$rows['phone']?>" target="blank"  ><i class="fa fa-whatsapp fa-1x" aria-hidden="true" style="font-size:22px"></i><?php echo " ".$rows['phone']; ?></a> <li class="nav-item">
                                         <li class="nav-item ratings">
                                             <a class="nav-link" href="#"> 
                                     <span>
@@ -109,7 +133,9 @@ include_once 'product-action.php'; //including controller
                                     </span> 
                                 </a>
                                         </li>
+                                        
                                     </ul>
+                                   
                                 </div>
                             </div>	
                         </div>
@@ -192,7 +218,7 @@ foreach ($_SESSION["cart_item"] as $item)  // fetch items define current into se
                         <div class="menu-widget" id="2">
                             <div class="widget-heading">
                                 <h3 class="widget-title text-dark">
-                             Foods Available in this restaurant <a class="btn btn-link pull-right" data-toggle="collapse" href="#popular2" aria-expanded="true">
+                            Popular Foods Available in this restaurant <a class="btn btn-link pull-right" data-toggle="collapse" href="#popular2" aria-expanded="true">
                               <i class="fa fa-angle-right pull-right"></i>
                               <i class="fa fa-angle-down pull-right"></i>
                               </a>
@@ -223,6 +249,7 @@ foreach ($_SESSION["cart_item"] as $item)  // fetch items define current into se
                                             <div class="rest-descr">
                                                 <h6><a href="#"><?php echo $product['title']; ?></a></h6>
                                                 <p> <?php echo $product['slogan']; ?></p>
+                                                <i onclick="myFunction(this)" class="fa fa-thumbs-up"></i>
                                             </div>
                                             <!-- end:Description -->
                                         </div>
@@ -307,16 +334,16 @@ foreach ($_SESSION["cart_item"] as $item)  // fetch items define current into se
                         <div class="col-xs-12 col-sm-3 popular-locations color-gray">
                             <h5>Popular locations</h5>
                             <ul>
-                                <li><a href="#">Sarajevo</a> </li>
-                                <li><a href="#">Split</a> </li>
-                                <li><a href="#">Tuzla</a> </li>
-                                <li><a href="#">Sibenik</a> </li>
-                                <li><a href="#">Zagreb</a> </li>
-                                <li><a href="#">Brcko</a> </li>
-                                <li><a href="#">Beograd</a> </li>
-                                <li><a href="#">New York</a> </li>
-                                <li><a href="#">Gradacac</a> </li>
-                                <li><a href="#">Los Angeles</a> </li>
+                            <li><a href="#">T Nagar</a> </li>
+                            <li><a href="#">Anna Nagar</a> </li>
+                            <li><a href="#">Velachery</a> </li>
+                            <li><a href="#">Chrompet</a> </li>
+                            <li><a href="#">Richie Street</a> </li>
+                            <li><a href="#">Sowkarpet</a> </li>
+                            <li><a href="#">North Chennai</a> </li>
+                            <li><a href="#">South Chennai</a> </li>
+                            <li><a href="#">Guindy</a> </li>
+                            <li><a href="#">Mylapore</a> </li>
                             </ul>
                         </div>
                     </div>
@@ -347,7 +374,7 @@ foreach ($_SESSION["cart_item"] as $item)  // fetch items define current into se
                                 </div>
                                 <div class="col-xs-12 col-sm-4 address color-gray">
                                     <h5>Address</h5>
-                                    <p>Concept design of oline food order and deliveye,planned as restaurant directory</p>
+                                    <p> D/2, Corinthian, Justice D V Vyas Marg, Opp Fariyas Hotel, Chennai.</p>
                                     <h5>Phone</h5> <a href="tel:+919445686329">9445686329</a> </div>
                                 <div class="col-xs-12 col-sm-5 additional-info color-gray">
                                     <h5>Addition informations</h5>
@@ -508,6 +535,12 @@ foreach ($_SESSION["cart_item"] as $item)  // fetch items define current into se
     <script src="js/jquery.isotope.min.js"></script>
     <script src="js/headroom.js"></script>
     <script src="js/foodpicky.min.js"></script>
+    
+<script>
+function myFunction(x) {
+  x.classList.toggle("fa-thumbs-down");
+}
+</script>
 </body>
 
 </html>

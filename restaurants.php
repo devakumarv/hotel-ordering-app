@@ -21,7 +21,49 @@ session_start();
     <link href="css/animsition.min.css" rel="stylesheet">
     <link href="css/animate.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="css/style.css" rel="stylesheet"> </head>
+    <link href="css/style.css" rel="stylesheet">
+<style>
+    *{
+    margin: 0;
+    padding: 0;
+}
+.rate {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:19px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+</style>
+ </head>
 
 <body>
            <!--header starts-->
@@ -46,7 +88,7 @@ session_start();
 							{
 									
 									
-									echo  '<li class="nav-item"><a href="your_orders.php" class="nav-link active">Your Orders</a> </li>';
+									echo  '<li class="nav-item"><a href="accountpage.php" class="nav-link active">My account</a> </li>';
 									echo  '<li class="nav-item"><a href="logout.php" class="nav-link active">Logout</a> </li>';
 							}
 
@@ -139,13 +181,18 @@ session_start();
                                   <div class="bottom-part">
                                     <div class="cost"><i class="fa fa-check"></i> Min $ 10,00</div>
                                     <div class="mins"><i class="fa fa-motorcycle"></i> 30 min</div>
-                                    <div class="ratings"> <span>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                      </span> (122) </div>
+                                    <div class="rate">
+    <input type="radio" id="star5" name="rate" value="5" />
+    <label for="star5" title="text">5 stars</label>
+    <input type="radio" id="star4" name="rate" value="4" />
+    <label for="star4" title="text">4 stars</label>
+    <input type="radio" id="star3" name="rate" value="3" />
+    <label for="star3" title="text">3 stars</label>
+    <input type="radio" id="star2" name="rate" value="2" />
+    <label for="star2" title="text">2 stars</label>
+    <input type="radio" id="star1" name="rate" value="1" />
+    <label for="star1" title="text">1 star</label>
+  </div>
                                   </div>
                                 </div>
                                 <!-- end:col -->
@@ -207,16 +254,16 @@ session_start();
                         <div class="col-xs-12 col-sm-3 popular-locations color-gray">
                             <h5>Popular locations</h5>
                             <ul>
-                                <li><a href="#">Sarajevo</a> </li>
-                                <li><a href="#">Split</a> </li>
-                                <li><a href="#">Tuzla</a> </li>
-                                <li><a href="#">Sibenik</a> </li>
-                                <li><a href="#">Zagreb</a> </li>
-                                <li><a href="#">Brcko</a> </li>
-                                <li><a href="#">Beograd</a> </li>
-                                <li><a href="#">New York</a> </li>
-                                <li><a href="#">Gradacac</a> </li>
-                                <li><a href="#">Los Angeles</a> </li>
+                            <li><a href="#">T Nagar</a> </li>
+                            <li><a href="#">Anna Nagar</a> </li>
+                            <li><a href="#">Velachery</a> </li>
+                            <li><a href="#">Chrompet</a> </li>
+                            <li><a href="#">Richie Street</a> </li>
+                            <li><a href="#">Sowkarpet</a> </li>
+                            <li><a href="#">North Chennai</a> </li>
+                            <li><a href="#">South Chennai</a> </li>
+                            <li><a href="#">Guindy</a> </li>
+                            <li><a href="#">Mylapore</a> </li>
                             </ul>
                         </div>
                     </div>
@@ -247,7 +294,7 @@ session_start();
                                 </div>
                                 <div class="col-xs-12 col-sm-4 address color-gray">
                                     <h5>Address</h5>
-                                    <p>Concept design of oline food order and deliveye,planned as restaurant directory</p>
+                                    <p> D/2, Corinthian, Justice D V Vyas Marg, Opp Fariyas Hotel, Chennai.</p>
                                     <h5>Phone</h5><a href="tel:+9445686329"> 9445686329</a> </div>
                                 <div class="col-xs-12 col-sm-5 additional-info color-gray">
                                     <h5>Addition informations</h5>

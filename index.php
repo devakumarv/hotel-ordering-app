@@ -63,6 +63,46 @@ form.example::after {
   clear: both;
   display: table;
 }
+*{
+    margin: 0;
+    padding: 0;
+}
+.rate {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:19px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+
 </style> </head>
 
 <body class="home">
@@ -90,7 +130,7 @@ form.example::after {
 							{
 									//if user is login
 									
-									echo  '<li class="nav-item"><a href="your_orders.php" class="nav-link active">Your Orders</a> </li>';
+									echo  '<li class="nav-item"><a href="accountpage.php" class="nav-link active">My account</a> </li>';
 									echo  '<li class="nav-item"><a href="logout.php" class="nav-link active">Logout</a> </li>';
 							}
 
@@ -104,10 +144,10 @@ form.example::after {
             <!-- /.navbar -->
         </header>
         <!-- banner part starts -->
-        <section class="hero bg-image" data-image-src="images/new.svg">
+        <section class="hero bg-image" data-image-src="images/abcd.png">
             <div class="hero-inner">
                 <div class="container text-center hero-text font-white">
-                    <h2 style="color: white; font-size: 55px;"><b>Online Food Ordering App</b> </h2>
+                    <h2 style="color: white; font-size: 55px; font-family:serif"><b>Online Food Ordering App</b> </h2>
                     <h5 class="font-white space-xs">Discover the best restaurants, foods and drinks.</h5>
                     <div class="banner-form">
                     <form class="example" action="food-search.php" method="POST" style="margin:auto;max-width:550px; ">
@@ -228,7 +268,7 @@ form.example::after {
                                     <li><a href="#" class="selected" data-filter="*">all</a> </li>
 									<?php 
 									// display categories here
-									$res= mysqli_query($db,"select * from res_category");
+									$res= mysqli_query($db,"select * from res_category LIMIT 6");
 									      while($row=mysqli_fetch_array($res))
 										  {
 											echo '<li><a href="#" data-filter=".'.$row['c_name'].'"> '.$row['c_name'].'</a> </li>';
@@ -266,13 +306,18 @@ form.example::after {
 																	<div class="bottom-part">
 																		<div class="cost"><i class="fa fa-check"></i> Min $ 10,00</div>
 																		<div class="mins"><i class="fa fa-motorcycle"></i> 30 min</div>
-																		<div class="ratings"> <span>
-																				<i class="fa fa-star"></i>
-																				<i class="fa fa-star"></i>
-																				<i class="fa fa-star"></i>
-																				<i class="fa fa-star"></i>
-																				<i class="fa fa-star-o"></i>
-																			</span> (122) </div>
+                                                                        <div class="rate">
+                                                                        <input type="radio" id="star5" name="rate" value="5" />
+                                                                        <label for="star5" title="text">5 stars</label>
+                                                                        <input type="radio" id="star4" name="rate" value="4" />
+                                                                        <label for="star4" title="text">4 stars</label>
+                                                                        <input type="radio" id="star3" name="rate" value="3" />
+                                                                        <label for="star3" title="text">3 stars</label>
+                                                                        <input type="radio" id="star2" name="rate" value="2" />
+                                                                        <label for="star2" title="text">2 stars</label>
+                                                                        <input type="radio" id="star1" name="rate" value="1" />
+                                                                        <label for="star1" title="text">1 star</label>
+                                                                      </div>
 																	</div>
 																</div>
 																<!-- end:col -->
@@ -335,16 +380,16 @@ form.example::after {
                     <div class="col-xs-12 col-sm-3 popular-locations color-gray">
                         <h5>Popular locations</h5>
                         <ul>
-                            <li><a href="#">Sarajevo</a> </li>
-                            <li><a href="#">Split</a> </li>
-                            <li><a href="#">Tuzla</a> </li>
-                            <li><a href="#">Sibenik</a> </li>
-                            <li><a href="#">Zagreb</a> </li>
-                            <li><a href="#">Brcko</a> </li>
-                            <li><a href="#">Beograd</a> </li>
-                            <li><a href="#">New York</a> </li>
-                            <li><a href="#">Gradacac</a> </li>
-                            <li><a href="#">Los Angeles</a> </li>
+                            <li><a href="#">T Nagar</a> </li>
+                            <li><a href="#">Anna Nagar</a> </li>
+                            <li><a href="#">Velachery</a> </li>
+                            <li><a href="#">Chrompet</a> </li>
+                            <li><a href="#">Richie Street</a> </li>
+                            <li><a href="#">Sowkarpet</a> </li>
+                            <li><a href="#">North Chennai</a> </li>
+                            <li><a href="#">South Chennai</a> </li>
+                            <li><a href="#">Guindy</a> </li>
+                            <li><a href="#">Mylapore</a> </li>
                         </ul>
                     </div>
                 </div>
@@ -374,7 +419,7 @@ form.example::after {
                         </div>
                         <div class="col-xs-12 col-sm-4 address color-gray">
                             <h5>Address</h5>
-                            <p>Concept design of oline food order and deliveye,planned as restaurant directory</p>
+                            <p> D/2, Corinthian, Justice D V Vyas Marg, Opp Fariyas Hotel, Chennai.</p>
                             <h5>Phone</h5><a href="tel:+9445686329"> 9445686329</a> </div>
                         <div class="col-xs-12 col-sm-5 additional-info color-gray">
                             <h5>Addition informations</h5>
