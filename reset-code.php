@@ -9,7 +9,8 @@ if($email == false){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Code Verification</title>
+    <title>Grub</title>
+    <link rel="shortcut icon" href="images/newbglogo.png" type="image/jpg">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
