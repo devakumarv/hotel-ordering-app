@@ -67,7 +67,9 @@ label.control-label {
   font-weight: 600;
   color: #777;
 }
-
+time{
+  font-size: 10px;
+}
 
 table { 
 	width: 750px; 
@@ -237,6 +239,7 @@ only screen and (max-width: 760px),
 							  <th>Quantity</th>
 							  <th>Price</th>
 							   <th>Status</th>
+                               <th>Cancel Order</th>
 							     <th>Date</th>
 								   <th>Action</th>
 							  
@@ -250,7 +253,7 @@ only screen and (max-width: 760px),
 						$query_res= mysqli_query($db,"select * from users_orders where u_id='".$_SESSION['user_id']."'");
 												if(!mysqli_num_rows($query_res) > 0 )
 														{
-															echo '<td colspan="6"><center>You have No orders Placed yet. </center></td>';
+															echo '<td colspan="7"><center>You have No orders Placed yet. </center></td>';
 														}
 													else
 														{			      
@@ -299,6 +302,12 @@ only screen and (max-width: 760px),
 														   
 														   
 														   </td>
+                                                           <td data-column="Cancel Order"><div style="width:200px;">
+                                                                                            <span id="timer">
+                                                                                            <span id="time" >60</span>s left &nbsp;
+                                                                                            <a href="delete_orders.php?order_del=<?php echo $row['o_id'];?>" onclick="return confirm('Are you sure you want to cancel your order?');"> <button type="button"><i class="fa fa-close"></i> Cancel</button></a>
+                                                                                             </span>
+                                                                                            </div></td>
 														  <td data-column="Date"> <?php echo $row['date']; ?></td>
 														   <td data-column="Action"> <a href="delete_orders.php?order_del=<?php echo $row['o_id'];?>" onclick="return confirm('Are you sure you want to cancel your order?');" class="btn btn-danger btn-flat btn-addon btn-xs m-b-10"><i class="fa fa-trash-o" style="font-size:16px"></i></a> 
 															</td>
@@ -435,6 +444,21 @@ only screen and (max-width: 760px),
     <script src="js/jquery.isotope.min.js"></script>
     <script src="js/headroom.js"></script>
     <script src="js/foodpicky.min.js"></script>
+    <script>
+       var counter = 60;
+       var interval = setInterval(function() {
+       counter--;
+    if (counter <= 0) {
+     		clearInterval(interval);
+      	$('#timer').html("<h5>Timeout</h5>");  
+        return;
+    }else{
+    	$('#time').text(counter);
+      console.log("Timer --> " + counter);
+    }
+}, 1000);
+    </script>
+
 </body>
 
 </html>

@@ -2,9 +2,9 @@
 
 //main connection file for both admin & front end
 $servername = "remotemysql.com"; //server
-$username = "vv0JZa26Tx"; //username
-$password = "4kORPtsG4X"; //password
-$dbname = "vv0JZa26Tx";  //database
+$username = "z8HGKAqVMb"; //username
+$password = "WLmqhw9JzW"; //password
+$dbname = "z8HGKAqVMb";  //database
 
 // Create connection
 $db = mysqli_connect($servername, $username, $password, $dbname); // connecting 
